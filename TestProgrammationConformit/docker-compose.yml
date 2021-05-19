@@ -1,0 +1,19 @@
+version: "3.4"
+
+services:
+  postgres.data:
+    image: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 2s
+      timeout: 2s
+      retries: 5
+
+  testprogrammationconformit:
+    image: ${DOCKER_REGISTRY-}testprogrammationconformit
+    build:
+      context: .
+      dockerfile: TestProgrammationConformit/Dockerfile
+    depends_on:
+      postgres.data:
+        condition: service_healthy
