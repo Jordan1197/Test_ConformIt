@@ -12,6 +12,10 @@ using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TestProgrammationConformit.Infrastructures;
+using TestProgrammationConformit.Models;
+using System.IO;
+using Microsoft.OpenApi.Models;
+using TestProgrammationConformit.DataAccessLayer;
 
 namespace TestProgrammationConformit
 {
@@ -35,7 +39,18 @@ namespace TestProgrammationConformit
                     npgsqlOptionsAction: sqlOptions =>
                     {
                         sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
+                        services.AddScoped<IDataAccessProvider, DataAccessProvider>();
                     });
+            });
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "TestProgrammationConformit", Version = "v1" });
+
+                string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.XML";
+                string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+                c.IncludeXmlComments(xmlPath);
             });
         }
 
@@ -45,6 +60,8 @@ namespace TestProgrammationConformit
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "TestProgrammationConformit v1"));
             }
 
             app.UseRouting();
