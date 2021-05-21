@@ -4,5 +4,76 @@
         <name>TestProgrammationConformit</name>
     </assembly>
     <members>
+        <member name="M:TestProgrammationConformit.Controllers.CommentaireController.Get">
+            <summary>
+            recupere la liste complete des commentaires
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TestProgrammationConformit.Controllers.CommentaireController.GetById(System.Int32)">
+            <summary>
+            recupere un commentaire selon sont identifiant
+            </summary>
+            <param name="id">l'identifiant du commentaire</param>
+            <returns></returns>
+        </member>
+        <member name="M:TestProgrammationConformit.Controllers.CommentaireController.Post(System.Int32,TestProgrammationConformit.Models.Commentaire)">
+            <summary>
+            ajout d'un commentaire
+            </summary>
+            <param name="idEvent">id de l'evenement qui possede le commentaire</param>
+            <param name="commentaire">le nouveau commentaire</param>
+            <returns></returns>
+        </member>
+        <member name="M:TestProgrammationConformit.Controllers.CommentaireController.Put(System.Int32,TestProgrammationConformit.Models.Commentaire)">
+            <summary>
+            permet la modification d'un commentaire selon son identifiant
+            </summary>
+            <param name="id">identifiant du commentaire</param>
+            <param name="commentaire">les donnees du nouveau commentaire</param>
+            <returns></returns>
+        </member>
+        <member name="M:TestProgrammationConformit.Controllers.CommentaireController.Delete(System.Int32)">
+            <summary>
+            supprime un commentaire selon son identifiant
+            </summary>
+            <param name="id">l'identifiant du commentaire</param>
+            <returns></returns>
+        </member>
+        <member name="M:TestProgrammationConformit.Controllers.EvenementController.Get">
+            <summary>
+            recupere la liste complete des evenements
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:TestProgrammationConformit.Controllers.EvenementController.GetById(System.Int32)">
+            <summary>
+            recupere un evenement selon sont identifiant
+            </summary>
+            <param name="id">l'identifiant de  l'evenement</param>
+            <returns></returns>
+        </member>
+        <member name="M:TestProgrammationConformit.Controllers.EvenementController.Post(TestProgrammationConformit.Models.Evenement)">
+            <summary>
+            ajout d'un evenement
+            </summary>
+            <param name="evenement">le nouveau evenement</param>
+            <returns></returns>
+        </member>
+        <member name="M:TestProgrammationConformit.Controllers.EvenementController.Put(System.Int32,TestProgrammationConformit.Models.Evenement)">
+            <summary>
+            permet la modification d'un evenement selon son identifiant
+            </summary>
+            <param name="id">identifiant de l'evenement</param>
+            <param name="evenement">les donnees du nouvelle evenement</param>
+            <returns></returns>
+        </member>
+        <member name="M:TestProgrammationConformit.Controllers.EvenementController.Delete(System.Int32)">
+            <summary>
+            supprime un evenement selon son identifiant
+            </summary>
+            <param name="id">l'identifiant de l'evenement</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>

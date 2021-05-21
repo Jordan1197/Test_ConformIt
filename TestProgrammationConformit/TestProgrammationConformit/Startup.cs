@@ -15,7 +15,6 @@ using TestProgrammationConformit.Infrastructures;
 using TestProgrammationConformit.Models;
 using System.IO;
 using Microsoft.OpenApi.Models;
-using TestProgrammationConformit.DataAccessLayer;
 
 namespace TestProgrammationConformit
 {
@@ -39,7 +38,6 @@ namespace TestProgrammationConformit
                     npgsqlOptionsAction: sqlOptions =>
                     {
                         sqlOptions.MigrationsAssembly(typeof(Startup).GetTypeInfo().Assembly.GetName().Name);
-                        services.AddScoped<IDataAccessProvider, DataAccessProvider>();
                     });
             });
 
