@@ -9,10 +9,14 @@ using TestProgrammationConformit.Infrastructures;
 using TestProgrammationConformit.Models;
 using Microsoft.EntityFrameworkCore;
 using TestProgrammationConformit.DataAccessLayer;
+using Microsoft.AspNetCore.Authorization;
+using TestProgrammationConformit.Authorization;
+
 namespace TestProgrammationConformit.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class CommentaireController : Controller
     {
         private readonly ConformitContext _context;
@@ -30,6 +34,7 @@ namespace TestProgrammationConformit.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = Roles.Admin + "," + Roles.User)]
         public ActionResult<IEnumerable<Commentaire>> Get()
         {
             List<Commentaire> commentaires= dataProvider.GetAllComms();
@@ -44,6 +49,7 @@ namespace TestProgrammationConformit.Controllers
         [HttpGet("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = Roles.Admin + "," + Roles.User)]
         public IActionResult GetById(int id)
         {
             Commentaire c;
@@ -69,6 +75,7 @@ namespace TestProgrammationConformit.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = Roles.Admin + "," + Roles.User)]
         public IActionResult Post(int idEvent,[FromBody] Commentaire commentaire)
         {
             Evenement evenement = dataProvider.GetEventById(idEvent);
@@ -104,6 +111,7 @@ namespace TestProgrammationConformit.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = Roles.Admin + "," + Roles.User)]
         public IActionResult Put(int id,int idEvent, [FromBody] Commentaire commentaire)
         {
            
@@ -137,6 +145,7 @@ namespace TestProgrammationConformit.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = Roles.Admin + "," + Roles.User)]
         public IActionResult Delete(int id)
         {
             Commentaire c = dataProvider.GetCommsById(id);

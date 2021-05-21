@@ -9,11 +9,14 @@ using TestProgrammationConformit.Infrastructures;
 using TestProgrammationConformit.Models;
 using Microsoft.EntityFrameworkCore;
 using TestProgrammationConformit.DataAccessLayer;
+using Microsoft.AspNetCore.Authorization;
+using TestProgrammationConformit.Authorization;
 
 namespace TestProgrammationConformit.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class EvenementController : Controller
     {
         private readonly  ConformitContext _context;
@@ -31,6 +34,7 @@ namespace TestProgrammationConformit.Controllers
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize(Roles =Roles.Admin + ","+ Roles.User)]
         public ActionResult<IEnumerable<Evenement>> Get()
         {
             List<Evenement> evenements = dataProvider.GetAllEvent();
@@ -45,6 +49,7 @@ namespace TestProgrammationConformit.Controllers
         [HttpGet("[action]")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = Roles.Admin + "," + Roles.User)]
         public IActionResult GetById(int id)
         {
             Evenement e;
@@ -69,6 +74,7 @@ namespace TestProgrammationConformit.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = Roles.Admin + "," + Roles.User)]
         public IActionResult Post([FromBody] Evenement evenement)
         {
             if(evenement != null)
@@ -93,6 +99,7 @@ namespace TestProgrammationConformit.Controllers
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = Roles.Admin + "," + Roles.User)]
         public IActionResult Put(int id,[FromBody] Evenement evenement)
         {
             if(evenement != null)
@@ -116,6 +123,7 @@ namespace TestProgrammationConformit.Controllers
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Authorize(Roles = Roles.Admin + "," + Roles.User)]
         public IActionResult Delete(int id)
         {
             Evenement e = dataProvider.GetEventById(id);

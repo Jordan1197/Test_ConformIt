@@ -15,6 +15,7 @@ using TestProgrammationConformit.Infrastructures;
 using TestProgrammationConformit.Models;
 using System.IO;
 using Microsoft.OpenApi.Models;
+using TestProgrammationConformit.Authentication;
 
 namespace TestProgrammationConformit
 {
@@ -32,6 +33,12 @@ namespace TestProgrammationConformit
         {
             services.AddControllers();
 
+            services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = ApiKeyAuthenticationOptions.DefaultScheme;
+                option.DefaultChallengeScheme = ApiKeyAuthenticationOptions.DefaultScheme;
+            }).AddApiKeySupport(options => { });
+            services.AddSingleton<IGetApiKeyQuery, InMemoryGetApiKeyQuery>();
             services.AddDbContext<ConformitContext>(options =>
             {
                 options.UseNpgsql(Configuration.GetConnectionString("ConformitDb"),
@@ -64,6 +71,7 @@ namespace TestProgrammationConformit
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

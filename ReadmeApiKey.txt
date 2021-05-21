@@ -1,0 +1,5 @@
+ApiKeyHeaderName = "X-Api-Key";
+
+API admin key = 78A51A29D7821B48E8FE2F5C63DE1
+
+API standard key = 9772E796F57E82AEF1F414A1C3BA2
