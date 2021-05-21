@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using TestProgrammationConformit.Models.Base;
 
 namespace TestProgrammationConformit.Models
 {
-    public class Evenement :ModelBase
+    public class Evenement : ModelBase
     {
-        public string Titre { get; set; }
+        [StringLength(100)]
+        public string titre { get; set; }
 
-        public string Description { get; set; }
+        public string description { get; set; }
 
-        public string PersonneResponsable { get; set; }
+        public string personneresponsable { get; set; }
 
-        public int CommentaireId { get; set; }
+        public int idcommentaire { get; set; }
+
+        //public List<Commentaire> listecommentaires { get; set; } = new List<Commentaire>();
+        
 
         //Constructeur vide
         public Evenement()
@@ -22,13 +27,14 @@ namespace TestProgrammationConformit.Models
         {
         }
 
-        public Evenement(int id,string titre,string description,string personneResponsable,int commentaireId)
+        public Evenement(int id,string titre,string description,string personneResponsable,int commentaireId,List<Commentaire> listecommentaires)
             :base(id)
         {
-            this.Titre = titre;
-            this.Description = description;
-            this.PersonneResponsable = personneResponsable;
-            this.CommentaireId = commentaireId;
+            this.titre = titre;
+            this.description = description;
+            this.personneresponsable = personneResponsable;
+            this.idcommentaire = commentaireId;
+            //this.listecommentaires = listecommentaires;
         }
     }
 }

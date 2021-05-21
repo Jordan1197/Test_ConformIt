@@ -7,11 +7,12 @@ namespace TestProgrammationConformit.Models.Base
 {
     public class ModelBase
     {
-        public int Id { get; set; }
+        
+        public int id { get; set; }
 
         public ModelBase(int id)
         {
-            this.Id = id;
+            this.id = id;
         }
     }
 }

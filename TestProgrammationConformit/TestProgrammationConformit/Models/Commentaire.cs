@@ -6,26 +6,30 @@ using TestProgrammationConformit.Models.Base;
 
 namespace TestProgrammationConformit.Models
 {
-    public class Commentaire  : ModelBase
+    public class Commentaire  :ModelBase
     {
-        public string Description { get; set; }
+       
 
-        public DateTime Date { get; set; }
+        public string description { get; set; }
 
-        public int IdEvenement { get; set; }
+        public DateTime date { get; set; }
 
+        public int idevenement { get; set; }
+
+        
         //constructeur vide
         public Commentaire()
             :base(0)
         {
         }
 
-        public Commentaire(int id,string desc,DateTime date,int idEvenement)
+        public Commentaire(int id,string desc,DateTime date,int idevenement)
             : base(id)
         {
-            this.Description = desc;
-            this.Date = date;
-            this.Id = idEvenement;
+            this.description = desc;
+            this.date = date;
+            this.idevenement = idevenement;
         }
+
     }
 }
