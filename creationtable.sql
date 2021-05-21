@@ -1,5 +1,5 @@
 CREATE TABLE evenement (
-	id INT PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	titre VARCHAR(100),
 	description VARCHAR(255),
 	personneresponsable VARCHAR(50),
@@ -7,7 +7,7 @@ CREATE TABLE evenement (
 );
 
 CREATE TABLE commentaire (
-	id INT PRIMARY KEY,
+	id SERIAL PRIMARY KEY,
 	evenementid INT,
 	description VARCHAR(255),
 	date DATE,
