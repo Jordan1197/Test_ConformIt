@@ -72,13 +72,19 @@ namespace TestProgrammationConformit.Controllers
         public IActionResult Post(int idEvent,[FromBody] Commentaire commentaire)
         {
             Evenement evenement = dataProvider.GetEventById(idEvent);
-
+            if(evenement.listecommentaire == null)
+            {
+                evenement.listecommentaire = new List<string>();
+            }
+            
             if (commentaire != null)
             {
-                commentaire.idevenement = idEvent;
+                commentaire.evenementid = idEvent;
                 dataProvider.AddComms(commentaire);
 
-                //evenement.listecommentaires.Add(commentaire);
+                evenement.listecommentaire.Add("Commentaire id: " + commentaire.id.ToString() +" "+commentaire.description);
+                dataProvider.UpdateEvent(evenement);
+
                 return Ok(commentaire.description + " à bien été crée");
             }
             else
@@ -92,17 +98,28 @@ namespace TestProgrammationConformit.Controllers
         /// permet la modification d'un commentaire selon son identifiant
         /// </summary>
         /// <param name="id">identifiant du commentaire</param>
+        /// <param name="idEvent">l'id de l'event apartenant au commentaire</param>
         /// <param name="commentaire">les donnees du nouveau commentaire</param>
         /// <returns></returns>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult Put(int id, [FromBody] Commentaire commentaire)
+        public IActionResult Put(int id,int idEvent, [FromBody] Commentaire commentaire)
         {
+           
+            Evenement evenement = dataProvider.GetEventById(idEvent);
+            
+
             if (commentaire != null)
             {
                 commentaire.id = id;
+                commentaire.evenementid = idEvent;
                 dataProvider.UpdateComms(commentaire);
+
+
+                evenement.listecommentaire.Remove(dataProvider.GetCommsById(commentaire.id).description);
+                evenement.listecommentaire.Add("Commentaire id: " + commentaire.id.ToString() + " " + commentaire.description);
+                dataProvider.UpdateEvent(evenement);
                 return Ok();
             }
             else

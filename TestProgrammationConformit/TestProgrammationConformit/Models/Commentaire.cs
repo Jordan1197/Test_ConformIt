@@ -14,7 +14,7 @@ namespace TestProgrammationConformit.Models
 
         public DateTime date { get; set; }
 
-        public int idevenement { get; set; }
+        public int evenementid { get; set; }
 
         
         //constructeur vide
@@ -28,7 +28,7 @@ namespace TestProgrammationConformit.Models
         {
             this.description = desc;
             this.date = date;
-            this.idevenement = idevenement;
+            this.evenementid = idevenement;
         }
 
     }

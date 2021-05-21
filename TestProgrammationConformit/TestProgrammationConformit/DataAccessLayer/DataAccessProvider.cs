@@ -29,7 +29,7 @@ namespace TestProgrammationConformit.DataAccessLayer
         }
 
         public void AddEvent(Evenement evenement)
-        {
+        {           
             _context.evenement.Add(evenement);
             _context.SaveChanges();
         }
@@ -69,6 +69,7 @@ namespace TestProgrammationConformit.DataAccessLayer
 
         public void UpdateComms(Commentaire commentaire)
         {
+           
             _context.commentaire.Update(commentaire);
             _context.SaveChanges();
         }

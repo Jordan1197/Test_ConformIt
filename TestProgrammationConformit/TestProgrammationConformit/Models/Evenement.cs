@@ -16,9 +16,9 @@ namespace TestProgrammationConformit.Models
 
         public string personneresponsable { get; set; }
 
-        public int idcommentaire { get; set; }
+        
 
-        //public List<Commentaire> listecommentaires { get; set; } = new List<Commentaire>();
+        public List<string> listecommentaire { get; set; }
         
 
         //Constructeur vide
@@ -27,14 +27,14 @@ namespace TestProgrammationConformit.Models
         {
         }
 
-        public Evenement(int id,string titre,string description,string personneResponsable,int commentaireId,List<Commentaire> listecommentaires)
+        public Evenement(int id,string titre,string description,string personneResponsable,List<string> listecommentaires)
             :base(id)
         {
             this.titre = titre;
             this.description = description;
             this.personneresponsable = personneResponsable;
-            this.idcommentaire = commentaireId;
-            //this.listecommentaires = listecommentaires;
+            
+            this.listecommentaire = listecommentaires;
         }
     }
 }
